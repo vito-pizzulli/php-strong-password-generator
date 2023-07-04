@@ -1,31 +1,39 @@
 <?php
+    /* User's desired password length, obtained by user input*/
     $passwordLength = $_GET['passwordLength'];
 
+    /* Function passwordGenerator start */
     function passwordGenerator($passwordLength) {
 
+        /* Array made of strings, each string is a set of characters of a different type */
         $characters = [
             'lowercaseLetters' => "abcdefghijklmnopqrstuvwxyz",
             'uppercaseLetters' => "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
             'numbers' => "1234567890",
             'symbols' => "!@#$%^&*"
         ];
-        $randomCharacterType = [];
-        $randomPassword = "";
 
-        var_dump($characters);
+        /* generatedPassword variable (string), initially empty but each random generated character will be added to it */
+        $generatedPassword = "";
 
+        /* For loop that creates as many random characters as the user's desired password length */
         for($i = 1; $i <= $passwordLength; $i++) {
-            $randomCharacterType = array_rand($characters);
-            var_dump($randomCharacterType);
-            $randomCharacterString = $characters[$randomCharacterType];
-            var_dump($randomCharacterString);
-            $randomCharacter = $randomCharacterString[rand(0, strlen($randomCharacterString)-1)];
-            var_dump($randomCharacter);
-            $randomPassword .= $randomCharacter;
-            var_dump($randomPassword);
 
-            return $randomPassword;
+            /* This randomly picks the key (character type name) of one of the strings contained into the characters array*/
+            $randomCharacterType = array_rand($characters);
+
+            /* This picks one of the strings of the character array, corresponding to the key randomly picked before*/
+            $randomCharacterString = $characters[$randomCharacterType];
+            
+            /* This randomly picks one of the characters of the chosen string */
+            $randomCharacter = $randomCharacterString[rand(0, strlen($randomCharacterString)-1)];
+            
+            /* This adds the picked character to the generatedPassword variable that will be returned by the function */
+            $generatedPassword .= $randomCharacter;
         }
+
+        /* This returns the generatedPassword string once the for loop has finished */
+        return $generatedPassword;
     }
 ?>
 
@@ -46,7 +54,7 @@
         <button type="submit">Invia</button>
     </form>
     <p>
-        <?php passwordGenerator($passwordLength)?>
+        La password generata per te è: <?php echo passwordGenerator($passwordLength)?>
     </p>
 </body>
 </html>
