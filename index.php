@@ -1,4 +1,7 @@
-<?php include_once __DIR__ . '/utilities/functions.php';?>
+<?php
+    session_start();
+    include_once __DIR__ . '/utilities/functions.php';
+?>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -18,11 +21,8 @@
     </form>
     <?php
         if ($passwordLength > 0) {
-    ?>
-            <p>
-                La password generata per te è: <?php echo passwordGenerator($passwordLength)?>
-            </p>
-    <?php
+            $_SESSION['generatedPassword'] = passwordGenerator($passwordLength);
+            header("Location: result.php");
         }
     ?>
 </body>
