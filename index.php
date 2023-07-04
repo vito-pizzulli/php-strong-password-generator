@@ -19,9 +19,9 @@
         <input type="text" name="passwordLength" id="passwordLength"><br>
 
         <span>Consenti ripetizioni di uno o più caratteri:</span>
-        <input type="radio" id="characterRepeatTrue" name="characterRepeat" value="true"/>
+        <input type="radio" id="characterRepeatTrue" name="characterRepeat" value="true" checked="checked">
         <label for="characterRepeatTrue">Si</label>
-        <input type="radio" id="characterRepeatFalse" name="characterRepeat" value="false"/>
+        <input type="radio" id="characterRepeatFalse" name="characterRepeat" value="false">
         <label for="characterRepeatFalse">No</label><br>
 
         <input type="checkbox" id="lettersIncluded" name="lettersIncluded">

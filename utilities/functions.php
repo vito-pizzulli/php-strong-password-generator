@@ -19,11 +19,17 @@
         $symbolsIncluded = false;
     }
 
+    if (isset($_GET['characterRepeat'])) {
+        $characterRepeat = $_GET['characterRepeat'];
+    } else {
+        $characterRepeat = false;
+    }
+
     if (isset($_GET['passwordLength'])) {
         if ($lettersIncluded || $numbersIncluded || $symbolsIncluded) {
             if (is_numeric($_GET['passwordLength']) && ($_GET['passwordLength'] > 0)) {
                 $passwordLength = $_GET['passwordLength'];
-                $_SESSION['generatedPassword'] = passwordGenerator($passwordLength, $lettersIncluded, $numbersIncluded, $symbolsIncluded);
+                $_SESSION['generatedPassword'] = passwordGenerator($passwordLength, $lettersIncluded, $numbersIncluded, $symbolsIncluded, $characterRepeat);
                 header("Location: result.php");
             }
         } else {
@@ -33,7 +39,7 @@
         $passwordLength = 0;
     }
 
-    function passwordGenerator($passwordLength, $lettersIncluded, $numbersIncluded, $symbolsIncluded) {
+    function passwordGenerator($passwordLength, $lettersIncluded, $numbersIncluded, $symbolsIncluded, $characterRepeat) {
 
         /* Array made of strings, each string is a set of characters of a different type */
         $characters = [];
@@ -66,8 +72,13 @@
             /* This picks one of the strings of the character array, corresponding to the key randomly picked before*/
             $randomCharacterString = $characters[$randomCharacterType];
             
-            /* This randomly picks one of the characters of the chosen string */
+            /* This randomly picks one of the characters of the chosen string, it doesn't pick a character that is already into the password if the user has selected so */
             $randomCharacter = $randomCharacterString[rand(0, strlen($randomCharacterString)-1)];
+            if ($characterRepeat == "false") {
+                while (str_contains($generatedPassword, $randomCharacter)) {
+                    $randomCharacter = $randomCharacterString[rand(0, strlen($randomCharacterString)-1)];
+                }
+            }
             
             /* This adds the picked character to the generatedPassword variable that will be returned by the function */
             $generatedPassword .= $randomCharacter;
