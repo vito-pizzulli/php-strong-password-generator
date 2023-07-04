@@ -16,7 +16,23 @@
     
     <form action="./index.php" method="get">
         <label for="passwordLength">Lunghezza password:</label>
-        <input type="text" name="passwordLength" id="passwordLength">
+        <input type="text" name="passwordLength" id="passwordLength"><br>
+
+        <span>Consenti ripetizioni di uno o più caratteri:</span>
+        <input type="radio" id="characterRepeatTrue" name="characterRepeat" value="true"/>
+        <label for="characterRepeatTrue">Si</label>
+        <input type="radio" id="characterRepeatFalse" name="characterRepeat" value="false"/>
+        <label for="characterRepeatFalse">No</label><br>
+
+        <input type="checkbox" id="lettersIncluded" name="lettersIncluded">
+        <label for="lettersIncluded" value="true">Lettere</label><br>
+
+        <input type="checkbox" id="numbersIncluded" name="numbersIncluded">
+        <label for="numbersIncluded" value="true">Numeri</label><br>
+
+        <input type="checkbox" id="symbolsIncluded" name="symbolsIncluded">
+        <label for="symbolsIncluded" value="true">Simboli</label><br>
+
         <button type="submit">Invia</button>
     </form>
 
