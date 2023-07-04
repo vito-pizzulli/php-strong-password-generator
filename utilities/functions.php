@@ -1,6 +1,8 @@
 <?php
+    /* Variable that is false by default and becomes true if no character type is selected by the user */
     $noCharacters = false;
     
+    /* Variables with values taken by get from the form inputs, they are false if not selected */
     if (isset($_GET['lettersIncluded'])) {
         $lettersIncluded = $_GET['lettersIncluded'];
     } else {
@@ -25,6 +27,7 @@
         $characterRepeat = false;
     }
 
+    /* If statements that check if all the requirements for the password generation are fullfilled (selected at least one character type, entered desired password length, numeric and higher than zero). If it's all ok, then the passwordLength value is taken by get, the function passwordGenerator is called passing all the necessary parameters, and the returning value is stored for the current session and displayed into the result.php page */
     if (isset($_GET['passwordLength'])) {
         if ($lettersIncluded || $numbersIncluded || $symbolsIncluded) {
             if (is_numeric($_GET['passwordLength']) && ($_GET['passwordLength'] > 0)) {
@@ -41,7 +44,7 @@
 
     function passwordGenerator($passwordLength, $lettersIncluded, $numbersIncluded, $symbolsIncluded, $characterRepeat) {
 
-        /* Array made of strings, each string is a set of characters of a different type */
+        /* Characters array, it's empty by default, but it's filled by the different characters strings based of what the user selected */
         $characters = [];
         $lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
         $uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -60,6 +63,7 @@
             array_push($characters, $symbols);
         }
 
+        /* In this section, if no same character repetition is selected, all the characters strings are merged into one array to check if there are enough characters to generate a password with the parameters chosen by the user. If it's impossible, an error message is returned instead of the password */
         if ($characterRepeat == "false") {
             $uniqueCharacters = implode("", $characters);
             if ($passwordLength > strlen($uniqueCharacters)) {
