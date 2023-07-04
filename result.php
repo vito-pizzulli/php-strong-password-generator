@@ -8,6 +8,6 @@
     <title>PHP Created Strong Password</title>
 </head>
 <body>
-    <p>La password generata per te è: <?php echo $_SESSION['generatedPassword'] ?></p>
+    <p><?php echo $_SESSION['generatedPassword'] ?></p>
 </body>
 </html>

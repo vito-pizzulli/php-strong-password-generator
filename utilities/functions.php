@@ -60,6 +60,13 @@
             array_push($characters, $symbols);
         }
 
+        if ($characterRepeat == "false") {
+            $uniqueCharacters = implode("", $characters);
+            if ($passwordLength > strlen($uniqueCharacters)) {
+                return "Impossibile generare la password con i parametri inseriti, non ci sono abbastanza caratteri disponibili.";
+            }
+        }
+
         /* generatedPassword variable (string), initially empty but each random generated character will be added to it */
         $generatedPassword = "";
 
@@ -85,6 +92,6 @@
         }
 
         /* This returns the generatedPassword string once the for loop has finished */
-        return $generatedPassword;
+        return "La password generata per te è: " . $generatedPassword;
     }
 ?>
