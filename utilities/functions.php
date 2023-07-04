@@ -1,23 +1,52 @@
 <?php
+    if (isset($_GET['lettersIncluded'])) {
+        $lettersIncluded = $_GET['lettersIncluded'];
+    } else {
+        $lettersIncluded = false;
+    }
+
+    if (isset($_GET['numbersIncluded'])) {
+        $numbersIncluded = $_GET['numbersIncluded'];
+    } else {
+        $numbersIncluded = false;
+    }
+
+    if (isset($_GET['symbolsIncluded'])) {
+        $symbolsIncluded = $_GET['symbolsIncluded'];
+    } else {
+        $symbolsIncluded = false;
+    }
+
     if (isset($_GET['passwordLength'])) {
         if (is_numeric($_GET['passwordLength']) && ($_GET['passwordLength'] > 0)) {
             $passwordLength = $_GET['passwordLength'];
-            $_SESSION['generatedPassword'] = passwordGenerator($passwordLength);
+            $_SESSION['generatedPassword'] = passwordGenerator($passwordLength, $lettersIncluded, $numbersIncluded, $symbolsIncluded);
             header("Location: result.php");
         }
     } else {
         $passwordLength = 0;
     }
 
-    function passwordGenerator($passwordLength) {
+    function passwordGenerator($passwordLength, $lettersIncluded, $numbersIncluded, $symbolsIncluded) {
 
         /* Array made of strings, each string is a set of characters of a different type */
-        $characters = [
-            'lowercaseLetters' => "abcdefghijklmnopqrstuvwxyz",
-            'uppercaseLetters' => "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            'numbers' => "1234567890",
-            'symbols' => "!@#$%^&*"
-        ];
+        $characters = [];
+        $lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+        $uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $numbers = "1234567890";
+        $symbols = "!@#$%^&*";
+
+        if ($lettersIncluded) {
+            array_push($characters, $lowercaseLetters, $uppercaseLetters);
+        }
+
+        if ($numbersIncluded) {
+            array_push($characters, $numbers);
+        }
+
+        if ($symbolsIncluded) {
+            array_push($characters, $symbols);
+        }
 
         /* generatedPassword variable (string), initially empty but each random generated character will be added to it */
         $generatedPassword = "";
