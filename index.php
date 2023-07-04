@@ -1,6 +1,10 @@
 <?php
-    /* User's desired password length, obtained by user input*/
-    $passwordLength = $_GET['passwordLength'];
+    /* User's desired password length, obtained by user input, it's 0 at page load*/
+    if (isset($_GET['passwordLength'])) {
+        $passwordLength = $_GET['passwordLength'];
+    } else {
+        $passwordLength = 0;
+    }
 
     /* Function passwordGenerator start */
     function passwordGenerator($passwordLength) {
@@ -53,8 +57,14 @@
         <input type="text" name="passwordLength" id="passwordLength">
         <button type="submit">Invia</button>
     </form>
-    <p>
-        La password generata per te è: <?php echo passwordGenerator($passwordLength)?>
-    </p>
+    <?php
+        if ($passwordLength > 0) {
+    ?>
+            <p>
+                La password generata per te è: <?php echo passwordGenerator($passwordLength)?>
+            </p>
+    <?php
+        }
+    ?>
 </body>
 </html>
