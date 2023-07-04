@@ -42,6 +42,12 @@
         <p>E' necessario inserire un valore numerico per definire la lunghezza della password generata.</p>
     <?php
         }
+
+        if (isset($_GET['passwordLength']) && ($noCharacters)) {
+    ?>
+        <p>E' necessario selezionare almeno un tipo di carattere per generare la password.</p>
+    <?php
+        }
     ?>
 </body>
 </html>

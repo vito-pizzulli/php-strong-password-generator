@@ -1,4 +1,6 @@
 <?php
+    $noCharacters = false;
+    
     if (isset($_GET['lettersIncluded'])) {
         $lettersIncluded = $_GET['lettersIncluded'];
     } else {
@@ -18,10 +20,14 @@
     }
 
     if (isset($_GET['passwordLength'])) {
-        if (is_numeric($_GET['passwordLength']) && ($_GET['passwordLength'] > 0)) {
-            $passwordLength = $_GET['passwordLength'];
-            $_SESSION['generatedPassword'] = passwordGenerator($passwordLength, $lettersIncluded, $numbersIncluded, $symbolsIncluded);
-            header("Location: result.php");
+        if ($lettersIncluded || $numbersIncluded || $symbolsIncluded) {
+            if (is_numeric($_GET['passwordLength']) && ($_GET['passwordLength'] > 0)) {
+                $passwordLength = $_GET['passwordLength'];
+                $_SESSION['generatedPassword'] = passwordGenerator($passwordLength, $lettersIncluded, $numbersIncluded, $symbolsIncluded);
+                header("Location: result.php");
+            }
+        } else {
+            $noCharacters = true;
         }
     } else {
         $passwordLength = 0;
