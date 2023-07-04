@@ -19,10 +19,12 @@
         <input type="text" name="passwordLength" id="passwordLength">
         <button type="submit">Invia</button>
     </form>
+
     <?php
-        if ($passwordLength > 0) {
-            $_SESSION['generatedPassword'] = passwordGenerator($passwordLength);
-            header("Location: result.php");
+        if (isset($_GET['passwordLength']) && !is_numeric($_GET['passwordLength'])) {
+    ?>
+        <p>E' necessario inserire un valore numerico per definire la lunghezza della password generata.</p>
+    <?php
         }
     ?>
 </body>

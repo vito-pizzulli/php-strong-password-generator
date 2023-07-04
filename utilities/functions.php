@@ -1,12 +1,14 @@
 <?php
-    /* User's desired password length, obtained by user input, it's 0 at page load*/
     if (isset($_GET['passwordLength'])) {
-        $passwordLength = $_GET['passwordLength'];
+        if (is_numeric($_GET['passwordLength']) && ($_GET['passwordLength'] > 0)) {
+            $passwordLength = $_GET['passwordLength'];
+            $_SESSION['generatedPassword'] = passwordGenerator($passwordLength);
+            header("Location: result.php");
+        }
     } else {
         $passwordLength = 0;
     }
 
-    /* Function passwordGenerator start */
     function passwordGenerator($passwordLength) {
 
         /* Array made of strings, each string is a set of characters of a different type */
