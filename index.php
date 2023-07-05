@@ -75,6 +75,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary fs-5">Invia</button>
+                <input type="reset" value="Annulla" name="cancel" class="btn btn-secondary fs-5">
             </form>
         </div>
     </main>
