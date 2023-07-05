@@ -18,7 +18,7 @@
     <main class="d-flex flex-column align-items-center vh-100 fs-5">
         <div class="container mt-5">
             <h1 class="text-center mb-1 display-3 fw-semibold">Strong Password Generator</h1>
-            <h2 class="text-light text-center mb-4 display-5 fw-semibold">Genera una password sicura</h2>
+            <h2 class="text-light text-center mb-5 display-5 fw-semibold">Genera una password sicura</h2>
 
             <?php
                 if (isset($_GET['passwordLength']) && !is_numeric($_GET['passwordLength']) && ($noCharacters)) {
