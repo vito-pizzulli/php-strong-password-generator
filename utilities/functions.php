@@ -49,7 +49,7 @@
         $lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
         $uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $numbers = "1234567890";
-        $symbols = "!@#$%^&*";
+        $symbols = "!@#$^&*";
 
         if ($lettersIncluded) {
             array_push($characters, $lowercaseLetters, $uppercaseLetters);
