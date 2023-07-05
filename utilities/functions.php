@@ -84,10 +84,10 @@
             $randomCharacterString = $characters[$randomCharacterType];
             
             /* This randomly picks one of the characters of the chosen string, it doesn't pick a character that is already into the password if the user has selected so */
-            $randomCharacter = $randomCharacterString[rand(0, strlen($randomCharacterString)-1)];
+            $randomCharacter = $randomCharacterString[random_int(0, strlen($randomCharacterString)-1)];
             if ($characterRepeat == "false") {
                 while (str_contains($generatedPassword, $randomCharacter)) {
-                    $randomCharacter = $randomCharacterString[rand(0, strlen($randomCharacterString)-1)];
+                    $randomCharacter = $randomCharacterString[rand_int(0, strlen($randomCharacterString)-1)];
                 }
             }
             
