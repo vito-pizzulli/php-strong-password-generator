@@ -15,10 +15,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <main class="d-flex flex-column justify-content-center align-items-center vh-100 fs-4">
-        <div class="container">
-            <h1 class="text-center mb-1 display-3">Strong Password Generator</h1>
-            <h2 class="text-light text-center mb-3 display-5">Genera una password sicura</h2>
+    <main class="d-flex flex-column align-items-center vh-100 fs-5">
+        <div class="container mt-5">
+            <h1 class="text-center mb-1 display-3 fw-semibold">Strong Password Generator</h1>
+            <h2 class="text-light text-center mb-4 display-5 fw-semibold">Genera una password sicura</h2>
 
             <?php
                 if (isset($_GET['passwordLength']) && !is_numeric($_GET['passwordLength']) && ($noCharacters)) {
@@ -43,25 +43,38 @@
             ?>
 
             <form action="./index.php" method="get" class="rounded w-75 m-auto p-3">
-                <label for="passwordLength">Lunghezza password:</label>
-                <input type="text" name="passwordLength" id="passwordLength"><br>
 
-                <span>Consenti ripetizioni di uno o più caratteri:</span>
-                <input type="radio" id="characterRepeatTrue" name="characterRepeat" value="true" checked="checked">
-                <label for="characterRepeatTrue">Si</label>
-                <input type="radio" id="characterRepeatFalse" name="characterRepeat" value="false">
-                <label for="characterRepeatFalse">No</label><br>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="passwordLength" class="form-check-label">Lunghezza password:</label>
+                    </div>
+                    <div class="col-6">
+                    <input type="text" name="passwordLength" id="passwordLength" class="form-control w-50">
+                    </div>
+                </div>
 
-                <input type="checkbox" id="lettersIncluded" name="lettersIncluded">
-                <label for="lettersIncluded" value="true">Lettere</label><br>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="characterRepeat" class="form-check-label">Consenti ripetizioni di uno o più caratteri:</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="radio" id="characterRepeatTrue" name="characterRepeat" value="true" checked="checked" class="form-check-input">
+                        <label for="characterRepeatTrue" class="form-check-label">Si</label><br>
+                        <input type="radio" id="characterRepeatFalse" name="characterRepeat" value="false" class="form-check-input">
+                        <label for="characterRepeatFalse" class="form-check-label mb-3">No</label><br>
 
-                <input type="checkbox" id="numbersIncluded" name="numbersIncluded">
-                <label for="numbersIncluded" value="true">Numeri</label><br>
+                        <input type="checkbox" id="lettersIncluded" name="lettersIncluded" class="form-check-input">
+                        <label for="lettersIncluded" value="true" class="form-check-label">Lettere</label><br>
 
-                <input type="checkbox" id="symbolsIncluded" name="symbolsIncluded">
-                <label for="symbolsIncluded" value="true">Simboli</label><br>
+                        <input type="checkbox" id="numbersIncluded" name="numbersIncluded" class="form-check-input">
+                        <label for="numbersIncluded" value="true" class="form-check-label">Numeri</label><br>
 
-                <button type="submit" class="btn btn-primary">Invia</button>
+                        <input type="checkbox" id="symbolsIncluded" name="symbolsIncluded" class="form-check-input">
+                        <label for="symbolsIncluded" value="true" class="form-check-label">Simboli</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary fs-5">Invia</button>
             </form>
         </div>
     </main>
